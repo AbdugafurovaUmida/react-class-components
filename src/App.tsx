@@ -8,6 +8,7 @@ import ResponseApi from './types/api'
 import People from 'types/people'
 import ErrorBoundary from './components/error-boundary/ErrorBoundary'
 import './App.css'
+import ButtonError from './components/ButtonError'
 
 type State = {
   defaultValue: string
@@ -43,6 +44,8 @@ class App extends Component<object, State> {
                 defaultValue={this.state.defaultValue}
                 onChange={this.handleChange}
               />
+
+              <ButtonError />
             </section>
 
             <hr />
