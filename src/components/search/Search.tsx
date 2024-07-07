@@ -1,0 +1,30 @@
+import * as React from 'react'
+import { Component, FormEvent } from 'react'
+import './Search.css'
+
+type Props = {
+  defaultValue: string
+  isLoading: boolean
+  onChange: (value: string) => Promise<void>
+}
+
+class Search extends Component<Props> {
+  handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    this.props.onChange(e.currentTarget.search.value)
+  }
+
+  render() {
+    const { isLoading, defaultValue } = this.props
+    return (
+      <form className='form' onSubmit={this.handleSubmit}>
+        <input disabled={isLoading} name='search' defaultValue={defaultValue} />
+        <button disabled={isLoading} type='submit'>
+          Search
+        </button>
+      </form>
+    )
+  }
+}
+
+export default Search
