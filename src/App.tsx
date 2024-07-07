@@ -7,6 +7,7 @@ import { getPeoples } from './api/people/index'
 import ResponseApi from './types/api'
 import People from 'types/people'
 import ErrorBoundary from './components/error-boundary/ErrorBoundary'
+import './App.css'
 
 type State = {
   defaultValue: string

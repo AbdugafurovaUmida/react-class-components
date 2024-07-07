@@ -4,6 +4,7 @@ import People from '../../types/people'
 import DescriptionField from '../description-field/DescriptionField'
 import Loading from '../loader/Loading'
 import * as React from 'react'
+import './Results.css'
 
 type Props = {
   data: ResponseApi<People> | undefined
@@ -29,7 +30,7 @@ class Results extends Component<Props> {
                 eye_color: string
                 hair_color: string
               }) => (
-                <div className='' key={people.name + people.url}>
+                <div className='item' key={people.name + people.url}>
                   <DescriptionField label='name'>{people.name}</DescriptionField>
                   <DescriptionField label='gender'>{people.gender}</DescriptionField>
                   <DescriptionField label='eye color'>{people.eye_color}</DescriptionField>

@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Component, FormEvent } from 'react'
+import './Search.css'
 
 type Props = {
   defaultValue: string
@@ -16,7 +17,7 @@ class Search extends Component<Props> {
   render() {
     const { isLoading, defaultValue } = this.props
     return (
-      <form className='' onSubmit={this.handleSubmit}>
+      <form className='form' onSubmit={this.handleSubmit}>
         <input disabled={isLoading} name='search' defaultValue={defaultValue} />
         <button disabled={isLoading} type='submit'>
           Search

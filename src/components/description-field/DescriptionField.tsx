@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Component } from 'react'
+import './DescriptionField.css'
 
 type Props = {
   label: string
@@ -9,8 +10,8 @@ type Props = {
 export default class DescriptionField extends Component<Props> {
   render() {
     return (
-      <div className=''>
-        <div className=''>{this.props.label + ':'}</div>
+      <div className='container'>
+        <div className='label'>{this.props.label + ':'}</div>
         <div>{this.props.children}</div>
       </div>
     )
