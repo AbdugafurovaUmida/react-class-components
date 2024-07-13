@@ -1,33 +1,16 @@
-import Search from './components/search/Search'
-import Results from './components/result/Results'
 import * as React from 'react'
-import ErrorBoundary from './components/error-boundary/ErrorBoundary'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Home from './pages/home/Home'
+import NotFound from './pages/notfound/Notfound'
 import './App.css'
-import ButtonError from './components/ButtonError'
-import useSearchQuery from './hooks/useSearchQuery'
 
 export default function App() {
-  const { defaultValue, isLoading, response, handleChange } = useSearchQuery()
   return (
-    <ErrorBoundary fallback={<div>Opsss, something went wrong</div>}>
-      <div className='container'>
-        <div className='home'>
-          <section className='section-search'>
-            <div>Type name hero from Star war</div>
-            <Search
-              isLoading={isLoading}
-              defaultValue={defaultValue || ''}
-              onChange={handleChange}
-            />
-
-            <ButtonError />
-          </section>
-
-          <hr />
-
-          <Results isLoading={isLoading} data={response} />
-        </div>
-      </div>
-    </ErrorBoundary>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='*' element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
