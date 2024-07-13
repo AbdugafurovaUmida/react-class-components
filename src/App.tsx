@@ -1,4 +1,3 @@
-import { Component } from 'react'
 import Search from './components/search/Search'
 import Results from './components/result/Results'
 import * as React from 'react'
@@ -9,53 +8,60 @@ import People from 'types/people'
 import ErrorBoundary from './components/error-boundary/ErrorBoundary'
 import './App.css'
 import ButtonError from './components/ButtonError'
+import { useState, useEffect } from 'react'
 
-type State = {
-  defaultValue: string
-  isLoading: boolean
-  response?: ResponseApi<People>
-}
+export default function App() {
+  const [defaultValue, setDefaultValue] = useState<string | undefined>(undefined)
+  const [isLoading, setIsLoading] = useState(false)
+  const [response, setResponse] = useState<ResponseApi<People> | undefined>(undefined)
 
-class App extends Component<object, State> {
-  state: State = { defaultValue: '', isLoading: false }
-
-  componentDidMount() {
+  useEffect(() => {
     const defaultValue = localStorage.getItem(SEARCH) || ''
-    this.setState({ defaultValue, isLoading: true })
-    getPeoples(defaultValue).then((response) => this.setState({ response, isLoading: false }))
-  }
+    setDefaultValue(defaultValue)
+    setIsLoading(true)
+    getPeoples(defaultValue).then((response) => {
+      setResponse(response)
+      setIsLoading(false)
+    })
+  }, [])
 
-  handleChange = async (value: string) => {
+  useEffect(() => {
+    if (defaultValue !== undefined) {
+      setIsLoading(true)
+      getPeoples(SEARCH).then((response) => {
+        setResponse(response)
+        setIsLoading(false)
+      })
+    }
+  }, [SEARCH])
+
+  const handleChange = async (value: string) => {
     localStorage.setItem(SEARCH, value)
-    this.setState({ isLoading: true, response: undefined })
+    setIsLoading(true)
     const response = await getPeoples(value)
-    this.setState({ response, isLoading: false })
+    setResponse(response)
+    setIsLoading(false)
   }
+  return (
+    <ErrorBoundary fallback={<div>Opsss, something went wrong</div>}>
+      <div className='container'>
+        <div className='home'>
+          <section className='section-search'>
+            <div>Type name hero from Star war</div>
+            <Search
+              isLoading={isLoading}
+              defaultValue={defaultValue || ''}
+              onChange={handleChange}
+            />
 
-  render() {
-    return (
-      <ErrorBoundary fallback={<div>Opsss, something went wrong</div>}>
-        <div className='container'>
-          <div className='home'>
-            <section className='section-search'>
-              <div>Type name hero from Star war</div>
-              <Search
-                isLoading={this.state.isLoading}
-                defaultValue={this.state.defaultValue}
-                onChange={this.handleChange}
-              />
+            <ButtonError />
+          </section>
 
-              <ButtonError />
-            </section>
+          <hr />
 
-            <hr />
-
-            <Results isLoading={this.state.isLoading} data={this.state.response} />
-          </div>
+          <Results isLoading={isLoading} data={response} />
         </div>
-      </ErrorBoundary>
-    )
-  }
+      </div>
+    </ErrorBoundary>
+  )
 }
-
-export default App

@@ -1,4 +1,3 @@
-import { Component } from 'react'
 import ResponseApi from '../../types/api'
 import People from '../../types/people'
 import DescriptionField from '../description-field/DescriptionField'
@@ -11,38 +10,24 @@ type Props = {
   isLoading: boolean
 }
 
-class Results extends Component<Props> {
-  render() {
-    const { data, isLoading } = this.props
+export default function Results(props: Props) {
+  const { data, isLoading } = props
 
-    return (
-      <section className='results'>
+  return (
+    <section className='results' style={{ position: 'relative' }}>
+      {isLoading && <Loading />}
+      {data?.results.length ? (
         <div className='results__list'>
-          {isLoading && <Loading />}
-          {!data?.results.length && !isLoading ? (
-            <div>Sorry, I didn't find anything</div>
-          ) : (
-            data?.results.map(
-              (people: {
-                name: string
-                url: string
-                gender: string
-                eye_color: string
-                hair_color: string
-              }) => (
-                <div className='item' key={people.name + people.url}>
-                  <DescriptionField label='name'>{people.name}</DescriptionField>
-                  <DescriptionField label='gender'>{people.gender}</DescriptionField>
-                  <DescriptionField label='eye color'>{people.eye_color}</DescriptionField>
-                  <DescriptionField label='hair color'>{people.hair_color}</DescriptionField>
-                </div>
-              ),
-            )
-          )}
+          {data.results.map((people) => (
+            <div className='item' key={people.name + people.url}>
+              <DescriptionField label='name'>{people.name}</DescriptionField>
+              <DescriptionField label='gender'>{people.gender}</DescriptionField>
+            </div>
+          ))}
         </div>
-      </section>
-    )
-  }
+      ) : (
+        <div>Sorry, I didn't find anything</div>
+      )}
+    </section>
+  )
 }
-
-export default Results
