@@ -6,12 +6,9 @@ export async function getPeoples(
   page: string = '1',
 ): Promise<ResponseApi<People>> {
   try {
-    const url = search
-      ? `${import.meta.env.VITE_API_URL}people/?search=${search}&page=${page}`
-      : `${import.meta.env.VITE_API_URL}people/`
-    const result = await fetch(url)
+    const result = await fetch(`https://swapi.dev/api/people?search=${search}&page=${page}`)
     if (!result.ok) {
-      throw new Error(`HTTP error! status: ${result.status}`)
+      throw new Error()
     }
     return result.json()
   } catch {

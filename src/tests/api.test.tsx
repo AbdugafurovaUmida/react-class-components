@@ -6,7 +6,7 @@ describe('Request search', () => {
   let response: Response
   const json = getPeoples(SEARCH)
   beforeAll(async () => {
-    response = await fetch('https://swapi.dev/api/people/?search=&page=1')
+    response = await fetch('https://swapi.dev/api/people/?search=&page=')
   }, 3000)
 
   test('Should have response status 200', () => {

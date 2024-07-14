@@ -1,15 +1,18 @@
-import * as React from 'react'
 import './Loading.css'
 
-export default function Loading() {
+type Props = {
+  backgroundOpacity?: number
+}
+
+export default function Loading({ backgroundOpacity }: Props) {
   return (
-    <div className='container'>
-      <div data-testid='loader' className='lds-ring'>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+    <div
+      className='loader-container'
+      style={{
+        backgroundColor: backgroundOpacity ? `rgba(255,255,255, ${backgroundOpacity})` : '#242424',
+      }}
+    >
+      Loading...
     </div>
   )
 }

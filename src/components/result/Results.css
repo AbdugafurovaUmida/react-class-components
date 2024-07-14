@@ -7,7 +7,7 @@
   flex-grow: 1;
 }
 
-.container {
+.results-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,8 +17,6 @@
 }
 
 .item {
-  max-width: 180px;
-  width: 100%;
   padding: 0.5rem;
   border: 2px solid #808080;
 }

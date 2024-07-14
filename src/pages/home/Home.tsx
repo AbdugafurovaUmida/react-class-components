@@ -1,7 +1,6 @@
 import Search from '../../components/search/Search'
 import Results from '../../components/result/Results'
 import * as React from 'react'
-// import ErrorBoundary from '../../components/error-boundary/ErrorBoundary'
 import ButtonError from '../../components/ButtonError'
 import useSearchQuery from '../../hooks/useSearchQuery'
 import { Outlet, useNavigate, useParams } from 'react-router-dom'
@@ -10,13 +9,12 @@ import './Home.css'
 
 const Home = () => {
   const { defaultValue, isLoading, response, handleChange } = useSearchQuery()
-  const { name } = useParams()
   const navigate = useNavigate()
+  const { name } = useParams()
   const handleClose = () => {
     navigate('/')
   }
   return (
-    // <ErrorBoundary fallback={<div>Opsss, something went wrong</div>}>
     <div className='container'>
       <div className='home'>
         <section className='section-search'>
@@ -39,7 +37,6 @@ const Home = () => {
         </div>
       </div>
     </div>
-    // </ErrorBoundary>
   )
 }
 
