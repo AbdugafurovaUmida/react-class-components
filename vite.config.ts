@@ -13,4 +13,8 @@ export default defineConfig({
       '@api': path.resolve(__dirname, './src/core/api'),
     },
   },
+  test: {
+    environment: 'jsdom',
+    globals: true,
+  },
 })

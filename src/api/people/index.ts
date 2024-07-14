@@ -11,7 +11,7 @@ export async function getPeoples(
       : `${import.meta.env.VITE_API_URL}people/`
     const result = await fetch(url)
     if (!result.ok) {
-      throw new Error()
+      throw new Error(`HTTP error! status: ${result.status}`)
     }
     return result.json()
   } catch {

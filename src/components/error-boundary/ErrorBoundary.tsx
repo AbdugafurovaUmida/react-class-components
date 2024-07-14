@@ -1,42 +1,48 @@
-import { Component, ErrorInfo, ReactNode } from 'react'
-import * as React from 'react'
+import React, { Component, ErrorInfo } from 'react'
 
-type State = {
+interface IProps {
+  children: React.ReactNode
+}
+
+interface IState {
   hasError: boolean
 }
 
-type Props = {
-  fallback: ReactNode
-  children: ReactNode
-}
+class ErrorBoundary extends Component<IProps, IState> {
+  constructor(props: IProps) {
+    super(props)
+    this.state = { hasError: false }
+    this.handleClick = this.handleClick.bind(this)
+  }
 
-export default class ErrorBoundary extends Component<Props, State> {
-  state = { hasError: false }
-
-  static getDerivedStateFromError() {
+  static getDerivedStateFromError(): IState {
     return { hasError: true }
   }
 
-  componentDidCatch(error: unknown, info: ErrorInfo) {
-    console.log(error, info.componentStack, 111)
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    console.error('ErrorBoundary caught an error: ', error, errorInfo)
+  }
+
+  handleClick = (): void => {
+    this.setState({ hasError: false })
   }
 
   render() {
-    if (this.state.hasError) {
+    const { hasError } = this.state
+    const { children } = this.props
+    if (hasError) {
       return (
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100vh',
-          }}
-        >
-          {this.props.fallback}
+        <div className=''>
+          <p>
+            Something went wrong. If you want to go to the previews page, click the button &quot;Go
+            back&quot;
+          </p>
+          <button onClick={this.handleClick}>Go back</button>
         </div>
       )
     }
-
-    return this.props.children
+    return children
   }
 }
+
+export default ErrorBoundary

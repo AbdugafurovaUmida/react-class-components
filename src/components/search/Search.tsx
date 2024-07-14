@@ -18,7 +18,7 @@ export default function Search(props: Props) {
 
   return (
     <form className='form' onSubmit={handleSubmit}>
-      <input disabled={isLoading} name={SEARCH} defaultValue={defaultValue} />
+      <input disabled={isLoading} name={SEARCH} defaultValue={defaultValue} placeholder='Search' />
       <button disabled={isLoading} type='submit'>
         Search
       </button>
