@@ -10,7 +10,7 @@ export default function DescriptionField(props: Props) {
   const { label, children } = props
 
   return (
-    <div className='container'>
+    <div className=''>
       <div className='label'>{label + ':'}</div>
       <div>{children}</div>
     </div>
