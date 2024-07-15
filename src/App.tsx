@@ -4,18 +4,23 @@ import NotFound from './pages/notfound/Notfound'
 import './App.css'
 import Detail from './pages/detail/Detail'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import ErrorElement from './components/error-elements/ErrorElement'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
-    errorElement: <NotFound />,
+    errorElement: <ErrorElement />,
     children: [
       {
         path: 'detail/:name',
         element: <Detail />,
       },
     ],
+  },
+  {
+    path: '*',
+    element: <NotFound />,
   },
 ])
 

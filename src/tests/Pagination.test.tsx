@@ -1,14 +1,14 @@
-import { render } from '@testing-library/react'
 import React from 'react'
+import { render } from '@testing-library/react'
+import Pagination from '../components/pagination/Pagination'
 import { describe, it } from 'vitest'
-import Results from '../components/result/Results'
 import { MemoryRouter } from 'react-router-dom'
 
-describe('Results', () => {
+describe('Pagination component', () => {
   it('should do something', () => {
     render(
       <MemoryRouter initialEntries={['?page=1']}>
-        <Results data={undefined} />
+        <Pagination data={undefined} />
       </MemoryRouter>,
     )
   })
