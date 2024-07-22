@@ -21,7 +21,7 @@ const useSearchQuery = () => {
       setResponse(response)
       setIsLoading(false)
     })
-  }, [])
+  }, [page])
 
   useEffect(() => {
     if (defaultValue !== undefined) {
@@ -31,7 +31,7 @@ const useSearchQuery = () => {
         setIsLoading(false)
       })
     }
-  }, [search, page])
+  }, [search, page, defaultValue])
 
   const handleChange = async (value: string) => {
     localStorage.setItem(SEARCH, value)
