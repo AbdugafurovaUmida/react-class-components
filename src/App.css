@@ -62,11 +62,11 @@ body {
   gap: 1.5rem;
 }
 
-hr {
+/* hr {
   margin: 0;
   align-self: stretch;
   width: 100%;
-}
+} */
 
 a {
   font-weight: 500;

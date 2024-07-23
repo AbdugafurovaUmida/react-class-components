@@ -1,11 +1,11 @@
 import ResponseApi from '../../types/api'
-import People from '../../types/people'
+import { Products } from '../../types/products'
 import './Results.css'
 import Pagination from '../../components/pagination/Pagination'
 import List from '../../components/list/List'
 
 type Props = {
-  data: ResponseApi<People> | undefined
+  data: ResponseApi<Products> | undefined
 }
 
 export default function Results(props: Props) {
@@ -13,7 +13,7 @@ export default function Results(props: Props) {
 
   return (
     <section className='results-container' style={{ position: 'relative' }}>
-      {data?.results.length ? (
+      {data?.products.length ? (
         <div className='results-container'>
           <List data={data} />
           <Pagination data={data} />

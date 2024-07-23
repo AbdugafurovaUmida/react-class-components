@@ -3,7 +3,7 @@ import { screen, render } from '@testing-library/react'
 import List from '../components/list/List'
 import { describe, it, expect } from 'vitest'
 import ResponseApi from '../types/api'
-import People from '../types/people'
+import People from '../types/products'
 import { MemoryRouter } from 'react-router-dom'
 
 const mockData: ResponseApi<People> = {

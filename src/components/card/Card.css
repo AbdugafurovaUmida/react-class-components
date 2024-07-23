@@ -1,0 +1,21 @@
+.product-image {
+  position: absolute;
+  left: -14%;
+  top: -8%;
+  background-color: white;
+}
+
+.product-image img {
+  width: 180px;
+  height: 140px;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  width: 450px;
+}
+
+.product-info {
+  padding-left: 30%;
+}

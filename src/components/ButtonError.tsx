@@ -14,5 +14,5 @@ export default function ButtonError() {
     }
   })
 
-  return <button onClick={handleBreak}>Break Me Completely</button>
+  return <button onClick={handleBreak}>Break Me</button>
 }

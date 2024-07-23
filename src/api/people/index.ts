@@ -1,12 +1,16 @@
 import ResponseApi from '../../types/api'
-import People from '../../types/people'
+import { Products } from '../../types/products'
 
 export async function getPeoples(
   search: string = '',
-  page: string = '1',
-): Promise<ResponseApi<People>> {
+  page: number = 1,
+  limit: number = 10,
+): Promise<ResponseApi<Products>> {
   try {
-    const result = await fetch(`https://swapi.dev/api/people?search=${search}&page=${page}`)
+    const url = search
+      ? `${import.meta.env.VITE_API_URL}products/search?q=${search}`
+      : `${import.meta.env.VITE_API_URL}products?limit=${limit}&skip=${(page - 1) * limit}`
+    const result = await fetch(url)
     if (!result.ok) {
       throw new Error()
     }
