@@ -11,7 +11,7 @@ import Counter from '../../components/Counter'
 const Home = () => {
   const { defaultValue, isLoading, response, handleChange } = useSearchQuery()
   const navigate = useNavigate()
-  const { id } = useParams()
+  const { name } = useParams()
   const handleClose = () => {
     navigate('/')
   }
@@ -20,7 +20,7 @@ const Home = () => {
       <div className='home'>
         <section className='section-search'>
           <Counter />
-          <div>Online Shop</div>
+          <div>War Heroes</div>
           <Search isLoading={isLoading} defaultValue={defaultValue || ''} onChange={handleChange} />
 
           <ButtonError />
@@ -29,7 +29,7 @@ const Home = () => {
         <div className='bottom-content'>
           {isLoading && <Loading />}
           <Results data={response} />
-          <section className='detail' style={{ width: id ? '40%' : 0, overflow: 'hidden' }}>
+          <section className='detail' style={{ width: name ? '30%' : 0, overflow: 'hidden' }}>
             <button className='close' onClick={handleClose}>
               Close
             </button>

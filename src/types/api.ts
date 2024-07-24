@@ -1,8 +1,8 @@
 type ResponseApi<P> = {
-  limit: number
-  skip: number | null
-  total: number | null | undefined
-  products: P[]
+  count: number
+  next: number | null
+  previous: number | null
+  results: P[]
 }
 
 export default ResponseApi

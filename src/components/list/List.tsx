@@ -1,22 +1,22 @@
 import Card from '../../components/card/Card'
 import React from 'react'
 import ResponseApi from '../../types/api'
-import { Products } from '../../types/products'
+import People from '../../types/people'
 
 type Props = {
-  data: ResponseApi<Products> | undefined
+  data: ResponseApi<People> | undefined
 }
 
 const List: React.FC<Props> = (props: Props) => {
   const { data } = props
 
-  if (!data || data.products?.length === 0) {
+  if (!data || data.results?.length === 0) {
     return <div>Sorry, I didn't find anything</div>
   }
 
   return (
     <ul className='results'>
-      {data?.products.map((product) => <Card product={product} key={product?.id} />)}
+      {data.results?.map((people) => <Card people={people} key={people?.name} />)}
     </ul>
   )
 }

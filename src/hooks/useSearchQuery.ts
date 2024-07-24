@@ -2,15 +2,16 @@ import { useState, useEffect } from 'react'
 import { SEARCH } from '../consts/index'
 import { getPeoples } from '../api/people/index'
 import ResponseApi from '../types/api'
-import { Products } from '../types/products'
+import People from '../types/people'
 import { useSearchParams } from 'react-router-dom'
+
 const useSearchQuery = () => {
   const [defaultValue, setDefaultValue] = useState<string | undefined>(undefined)
   const [isLoading, setIsLoading] = useState(false)
-  const [response, setResponse] = useState<ResponseApi<Products> | undefined>(undefined)
+  const [response, setResponse] = useState<ResponseApi<People> | undefined>(undefined)
   const [urlSearchParams] = useSearchParams()
 
-  const page = Number(urlSearchParams.get('page')) || 1
+  const page = urlSearchParams.get('page') || '1'
   const search = urlSearchParams.get(SEARCH) || ''
 
   useEffect(() => {
@@ -22,7 +23,6 @@ const useSearchQuery = () => {
       setIsLoading(false)
     })
   }, [page])
-
   useEffect(() => {
     if (defaultValue !== undefined) {
       setIsLoading(true)

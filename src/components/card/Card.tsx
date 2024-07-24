@@ -2,34 +2,28 @@ import React from 'react'
 import DescriptionField from '../description-field/DescriptionField'
 import { useNavigate } from 'react-router-dom'
 import './Card.css'
-import { Products } from '../../types/products'
+import People from '../../types/people'
 
-type Props = {
-  product: Products | undefined
+interface CardProps {
+  people: People | undefined
 }
-const Card: React.FC<Props> = (props: Props) => {
-  const { product } = props
+const Card: React.FC<CardProps> = (props: CardProps) => {
+  const { people } = props
 
   const navigate = useNavigate()
-
-  const handleClick = (id: number) => {
-    navigate(`/detail/${id}`)
+  const handleClick = (id: string) => {
+    const slugName = id.replace(' ', '-')
+    navigate(`/detail/${slugName}`)
   }
-  if (!product || product?.length === 0) {
+
+  if (!people || people?.length === 0) {
     return <div>Sorry, I didn't find anything</div>
   }
 
   return (
-    <li className='item' onClick={() => handleClick(product?.id)}>
-      <div className='product-image'>
-        <img src={product?.thumbnail} alt={product.title} />
-      </div>
-      <div className='product-info'>
-        <DescriptionField label='Title'>{product?.title}</DescriptionField>
-        <DescriptionField label='Category'>{product?.category}</DescriptionField>
-        <DescriptionField label='Description'>{product?.description}</DescriptionField>
-        <DescriptionField label='Price'>{product?.price}</DescriptionField>
-      </div>
+    <li className='item' onClick={() => handleClick(people.name)}>
+      <DescriptionField label='name'>{people?.name}</DescriptionField>
+      <DescriptionField label='gender'>{people?.gender}</DescriptionField>
     </li>
   )
 }
