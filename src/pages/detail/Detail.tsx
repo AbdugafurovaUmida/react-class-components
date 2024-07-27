@@ -14,7 +14,7 @@ export default function Detail() {
 
   useEffect(() => {
     if (data) {
-      dispatch({ type: 'viewed/addToRecently', payload: data })
+      dispatch({ type: 'peopleSlice/addToRecently', payload: data })
       setPeople(data)
     }
   }, [data, dispatch])

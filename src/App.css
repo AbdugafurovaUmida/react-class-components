@@ -131,3 +131,24 @@ button:focus-visible {
 .theme-toggle__input {
   display: none;
 }
+
+.select-items-btn {
+  margin-left: 20px;
+}
+
+.selected-items {
+  margin: 0 20px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  padding: 1px 4px;
+}
+
+.dark-mode .selected-items {
+  background-color: gray;
+}
+
+.light-mode .selected-items {
+  background-color: white;
+}

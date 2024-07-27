@@ -12,6 +12,7 @@ import { useSearchParams } from 'react-router-dom'
 import Pagination from '../../components/pagination/Pagination'
 import { ThemeContext } from '../../contexts/ThemeContext'
 import { ThemeToggle } from '../../contexts/ThemeToggle'
+import { Flyout } from '../../components/flyout/Flyout'
 
 const Home = () => {
   const { defaultValue, isLoading, searchData, error, handleChange } = useSearchQuery()
@@ -24,10 +25,6 @@ const Home = () => {
   }
 
   const { data } = useGetHeroesByPageQuery(Number(searchParams.get('page')) || 1)
-
-  // if ((!data && !isLoading) || data?.results?.length === 0) {
-  //   return <div className='not-found-items'>Sorry, I didn't find anything</div>
-  // }
 
   return (
     <div className={theme === 'light' ? ' light-mode ' : ' dark-mode '}>
@@ -43,7 +40,8 @@ const Home = () => {
             />
             <ButtonError />
           </section>
-          <div className='bottom-content'>
+          <Flyout />
+          <section className='bottom-content'>
             {isLoading && <Loading />}
             {!isLoading && error ? `Sorry, I didn't find anything` : ''}
             {!defaultValue ? (
@@ -57,7 +55,7 @@ const Home = () => {
               </button>
               <Outlet />
             </section>
-          </div>
+          </section>
           <Pagination data={data} />
         </div>
       </div>

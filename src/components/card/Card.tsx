@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Card.css'
 import People from '../../types/people'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store/store'
-import { addToList, removeFromList } from '../../slices/selectedItems'
 
 interface CardProps {
   people: People
@@ -12,11 +11,9 @@ interface CardProps {
 const Card: React.FC<CardProps> = (props: CardProps) => {
   const { people } = props
   const navigate = useNavigate()
-  const selectedItems = useSelector((state: RootState) => state.selectedItems.list)
+
+  const peopleList = useSelector((state: RootState) => state.peopleState.list)
   const dispatch = useDispatch()
-  const [selected, setSelected] = useState<boolean>(
-    selectedItems.find((item) => item.url === people.url) ? true : false,
-  )
 
   const imgId = people.url.split('/')[5]
   const image = 'https://starwars-visualguide.com/assets/img/characters/' + imgId + '.jpg'
@@ -26,14 +23,19 @@ const Card: React.FC<CardProps> = (props: CardProps) => {
     navigate(`/detail/${slugUrl}`)
   }
 
-  function selectedHandler() {
-    if (!selected) {
-      setSelected(true)
-      dispatch(addToList({ ...people, selected: true }))
+  function changeHandler(e: React.ChangeEvent<HTMLInputElement>) {
+    if (e.target.checked) {
+      dispatch({ type: 'peopleSlice/addItem', payload: people })
     } else {
-      setSelected(false)
-      dispatch(removeFromList({ ...people, selected: false }))
+      dispatch({ type: 'peopleSlice/removeItem', payload: people })
     }
+  }
+
+  function checkHandler() {
+    if (peopleList.find((item: { name: string }) => item.name === people.name)) {
+      return true
+    }
+    return false
   }
 
   return (
@@ -46,10 +48,11 @@ const Card: React.FC<CardProps> = (props: CardProps) => {
         <p>{people.gender}</p>
       </div>
       <input
-        type='checkbox'
-        checked={selected}
-        onChange={selectedHandler}
+        onChange={changeHandler}
         onClick={(e) => e.stopPropagation()}
+        type='checkbox'
+        name={people.name}
+        checked={checkHandler()}
       />
     </li>
   )

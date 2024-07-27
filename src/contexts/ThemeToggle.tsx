@@ -7,9 +7,8 @@ export function ThemeToggle() {
   const { theme, setTheme } = useContext(ThemeContext)
 
   return (
-    <div data-testid='theme-switcher' className='theme-toggle'>
+    <div className='theme-toggle'>
       <input
-        data-testid='theme-switch-input'
         className='theme-toggle__input'
         type='checkbox'
         id='themeSwitch'
@@ -19,8 +18,8 @@ export function ThemeToggle() {
           setTheme(theme === 'light' ? 'dark' : 'light')
         }}
       />
-      <label className='theme-toggle__label' data-testid='theme-switch-label' htmlFor='themeSwitch'>
-        <img src={theme === 'light' ? LightMode : DarkMode} alt='' />
+      <label className='theme-toggle__label' htmlFor='themeSwitch'>
+        <img src={theme === 'light' ? DarkMode : LightMode} alt='' />
       </label>
     </div>
   )
