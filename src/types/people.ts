@@ -15,6 +15,7 @@ type People = {
   created: string
   edited: string
   url: string
+  selected?: boolean
 }
 
 export default People

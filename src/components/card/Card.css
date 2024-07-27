@@ -17,6 +17,8 @@
   position: relative;
   display: flex;
   width: 270px;
+  align-items: start;
+  justify-content: space-between;
 }
 
 .item__info {
