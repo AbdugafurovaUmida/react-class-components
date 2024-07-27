@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
-
-import counterReducer from '../slices/counterSlice'
+import { swaApi } from '../services/swapi'
+import searchReducer from '../slices/searchSlice'
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    [swaApi.reducerPath]: swaApi.reducer,
+    search: searchReducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(swaApi.middleware),
 })
 
 export type RootState = ReturnType<typeof store.getState>

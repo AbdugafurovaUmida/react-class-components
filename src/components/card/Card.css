@@ -1,21 +1,24 @@
-.product-image {
+.item__image {
   position: absolute;
-  left: -14%;
-  top: -8%;
-  background-color: white;
+  left: -10%;
+  top: -15%;
+  width: 110px;
+  height: 110px;
 }
 
-.product-image img {
-  width: 180px;
-  height: 140px;
+.item__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
 }
 
 .item {
   position: relative;
   display: flex;
-  width: 450px;
+  width: 270px;
 }
 
-.product-info {
-  padding-left: 30%;
+.item__info {
+  padding-left: 28%;
 }

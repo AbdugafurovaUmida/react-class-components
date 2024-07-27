@@ -2,22 +2,28 @@ import Card from '../../components/card/Card'
 import React from 'react'
 import ResponseApi from '../../types/api'
 import People from '../../types/people'
+import './List.css'
 
 type Props = {
   data: ResponseApi<People> | undefined
+  isLoading: boolean
 }
 
 const List: React.FC<Props> = (props: Props) => {
-  const { data } = props
-
-  if (!data || data.results?.length === 0) {
-    return <div>Sorry, I didn't find anything</div>
-  }
+  const { data, isLoading } = props
 
   return (
-    <ul className='results'>
-      {data.results?.map((people) => <Card people={people} key={people?.name} />)}
-    </ul>
+    <section className='results-container' style={{ position: 'relative' }}>
+      {!data?.results.length && !isLoading ? (
+        `Sorry, I didn't find anything`
+      ) : (
+        <div className='results-container'>
+          <ul className='results'>
+            {data?.results?.map((people) => <Card people={people} key={people?.name} />)}
+          </ul>
+        </div>
+      )}
+    </section>
   )
 }
 

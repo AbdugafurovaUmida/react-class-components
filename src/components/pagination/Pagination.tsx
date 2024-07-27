@@ -24,10 +24,11 @@ export default function Pagination(props: Props) {
     }
   }
   return (
-    <div onClick={handleChangePage}>
+    <div className='pagination-bar' onClick={handleChangePage}>
       <button disabled={!previous} data-direction='prev'>
         Prev
       </button>
+      <span className='current-page'> {Number(urlSearchParams.get('page') || '1')}</span>
       <button disabled={!next} data-direction='next'>
         Next
       </button>

@@ -1,5 +1,5 @@
 :root {
-  --backgroung: #242424;
+  --backgroung: #1b3541;
 }
 
 body {
@@ -36,15 +36,6 @@ body {
   margin: 0 auto;
   width: 100%;
   max-width: 1200px;
-}
-
-.section-search {
-  display: flex;
-  padding: 1rem;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1rem;
-  height: 30%;
 }
 
 .results {
@@ -107,4 +98,21 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.pagination-bar {
+  padding-bottom: 40px;
+  display: flex;
+  align-items: center;
+}
+.current-page {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: white;
+  color: #221414;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 30px;
 }
