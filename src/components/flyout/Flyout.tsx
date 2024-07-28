@@ -18,7 +18,7 @@ export function Flyout() {
   }
 
   return (
-    <div className={isActive ? ' isActiveFlyout ' : ' activeFlyout '}>
+    <div className={isActive ? ' activeFlyout ' : ' isActiveFlyout '}>
       <button onClick={clearHandler}>Unselect all</button>
       <button
         className='select-items-btn'

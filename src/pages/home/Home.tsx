@@ -56,7 +56,7 @@ const Home = () => {
               <Outlet />
             </section>
           </section>
-          {!defaultValue && data ? <Pagination data={data} /> : ''}
+          <Pagination data={data} />
         </div>
       </div>
     </div>
