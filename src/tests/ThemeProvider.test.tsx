@@ -4,7 +4,6 @@ import { describe, expect, it } from 'vitest'
 import { ThemeProvider } from '../contexts/ThemeProvider'
 import { useTheme } from '../contexts/ThemeContext'
 
-// Mock component to use the useTheme hook
 const MockComponent = () => {
   const { theme, setTheme } = useTheme()
   return (
@@ -39,15 +38,12 @@ describe('ThemeProvider and useTheme', () => {
     const themeElement = screen.getByTestId('theme')
     const buttonElement = screen.getByTestId('toggle-theme')
 
-    // Initially, the theme should be 'light'
     expect(themeElement).toHaveTextContent('light')
 
-    // Simulate a button click to change the theme
     act(() => {
       buttonElement.click()
     })
 
-    // After clicking, the theme should change to 'dark'
     expect(themeElement).toHaveTextContent('dark')
   })
 })

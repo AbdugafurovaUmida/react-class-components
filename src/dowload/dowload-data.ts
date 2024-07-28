@@ -2,7 +2,6 @@ import People from '../types/people'
 function DownloadData(data: People[]) {
   const csvRows: string[] = []
 
-  // Add header row
   csvRows.push('name,gender,height,mass,homeworld,films')
 
   for (const person of data) {

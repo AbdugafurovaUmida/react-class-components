@@ -44,10 +44,10 @@ const Home = () => {
           <section className='bottom-content'>
             {isLoading && <Loading />}
             {!isLoading && error ? `Sorry, I didn't find anything` : ''}
-            {!defaultValue ? (
+            {!defaultValue && !searchData ? (
               <List data={data} isLoading={isLoading} />
             ) : (
-              <List data={searchData} isLoading={isLoading} />
+              <List data={searchData || data} isLoading={isLoading} />
             )}
             <section className='detail' style={{ width: id ? '30%' : 0, overflow: 'hidden' }}>
               <button className='close' onClick={handleClose}>
@@ -56,7 +56,7 @@ const Home = () => {
               <Outlet />
             </section>
           </section>
-          <Pagination data={data} />
+          {!defaultValue && data ? <Pagination data={data} /> : ''}
         </div>
       </div>
     </div>

@@ -39,7 +39,6 @@ const mockData: People[] = [
     edited: '',
     url: '',
   },
-  // Add more mock data as needed
 ]
 
 describe('exportData', () => {
@@ -47,16 +46,13 @@ describe('exportData', () => {
   let originalRevokeObjectURL: typeof URL.revokeObjectURL
 
   beforeAll(() => {
-    // Save the original methods
     originalCreateObjectURL = URL.createObjectURL
     originalRevokeObjectURL = URL.revokeObjectURL
-    // Mock the methods
     URL.createObjectURL = vi.fn(() => 'blob:url')
     URL.revokeObjectURL = vi.fn()
   })
 
   afterAll(() => {
-    // Restore the original methods
     URL.createObjectURL = originalCreateObjectURL
     URL.revokeObjectURL = originalRevokeObjectURL
   })
@@ -70,8 +66,6 @@ describe('exportData', () => {
     const spyClick = vi.spyOn(HTMLElement.prototype, 'click')
 
     DownloadData(mockData)
-
-    // Check if functions were called with the correct arguments
     expect(spyCreateElement).toHaveBeenCalled()
     expect(spyCreateElement.mock.calls[0][0]).toBe('a')
     expect(spyCreateObjectURL).toHaveBeenCalled()
@@ -80,7 +74,6 @@ describe('exportData', () => {
     expect(spyClick).toHaveBeenCalled()
     expect(spyRevokeObjectURL).toHaveBeenCalledWith('blob:url')
 
-    // Cleanup
     spyCreateElement.mockRestore()
     spyCreateObjectURL.mockRestore()
     spyAppendChild.mockRestore()
