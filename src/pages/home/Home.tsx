@@ -24,7 +24,7 @@ const Home = () => {
     navigate('/')
   }
 
-  const { data } = useGetHeroesByPageQuery(Number(searchParams.get('page')) || 1)
+  const { data: allData } = useGetHeroesByPageQuery(Number(searchParams.get('page')) || 1)
 
   return (
     <div data-testid='home-page' className={theme === 'light' ? ' light-mode ' : ' dark-mode '}>
@@ -44,10 +44,10 @@ const Home = () => {
           <section className='bottom-content'>
             {isLoading && <Loading />}
             {!isLoading && error ? `Sorry, I didn't find anything` : ''}
-            {!defaultValue && !searchData ? (
-              <List data={data} isLoading={isLoading} />
+            {!defaultValue?.length ? (
+              <List data={allData} isLoading={isLoading} />
             ) : (
-              <List data={searchData || data} isLoading={isLoading} />
+              <List data={searchData || []} isLoading={isLoading} />
             )}
             <section className='detail' style={{ width: id ? '30%' : 0, overflow: 'hidden' }}>
               <button className='close' onClick={handleClose}>
@@ -56,7 +56,7 @@ const Home = () => {
               <Outlet />
             </section>
           </section>
-          <Pagination data={data} />
+          <Pagination data={allData} />
         </div>
       </div>
     </div>

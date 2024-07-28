@@ -18,13 +18,12 @@ const useSearchQuery = () => {
   useEffect(() => {
     const defaultValue = localStorage.getItem(SEARCH) || ''
     doSearch(defaultValue)
-    doSearch(defaultValue)
     setDefaultValue(defaultValue)
   }, [page, doSearch, defaultValue])
 
   const handleChange = async (value: string) => {
+    location.reload()
     localStorage.setItem(SEARCH, value)
-    doSearch(value)
     doSearch(value)
     refetch()
   }
