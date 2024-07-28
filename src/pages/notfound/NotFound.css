@@ -1,0 +1,14 @@
+.errorWrapper {
+  padding: 100px 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+
+.errorWrapper img {
+  width: 80%;
+}
