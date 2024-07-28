@@ -15,11 +15,11 @@ const Card: React.FC<CardProps> = (props: CardProps) => {
   const peopleList = useSelector((state: RootState) => state.peopleState.list)
   const dispatch = useDispatch()
 
-  const imgId = people.url.split('/')[5]
+  const imgId = people?.url.split('/')[5]
   const image = 'https://starwars-visualguide.com/assets/img/characters/' + imgId + '.jpg'
 
   const handleClick = (data: { url: string }) => {
-    const slugUrl = data.url.split('/')[5]
+    const slugUrl = data?.url.split('/')[5]
     navigate(`/detail/${slugUrl}`)
   }
 
@@ -32,7 +32,7 @@ const Card: React.FC<CardProps> = (props: CardProps) => {
   }
 
   function checkHandler() {
-    if (peopleList.find((item: { name: string }) => item.name === people.name)) {
+    if (peopleList.find((item: { name: string }) => item?.name === people?.name)) {
       return true
     }
     return false
@@ -41,17 +41,18 @@ const Card: React.FC<CardProps> = (props: CardProps) => {
   return (
     <li className='item' onClick={() => people && handleClick(people)}>
       <div className='item__image'>
-        <img src={image} alt={people.name} />
+        <img src={image} alt={people?.name} />
       </div>
       <div className='item__info'>
-        <h3>{people.name}</h3>
-        <p>{people.gender}</p>
+        <h3 data-testid='search-item-name'>{people?.name}</h3>
+        <p data-testid='search-item-gender'>{people?.gender}</p>
       </div>
       <input
+        data-testid='search-item-checkbox'
         onChange={changeHandler}
         onClick={(e) => e.stopPropagation()}
         type='checkbox'
-        name={people.name}
+        name={people?.name}
         checked={checkHandler()}
       />
     </li>

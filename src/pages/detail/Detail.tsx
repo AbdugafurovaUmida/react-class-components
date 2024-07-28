@@ -20,7 +20,7 @@ export default function Detail() {
   }, [data, dispatch])
 
   return (
-    <div className='detail-card'>
+    <div data-testid='detail-page' className='detail-card'>
       {isLoading || isFetching ? <DetailCardLoader /> : ''}
       {people && (
         <>

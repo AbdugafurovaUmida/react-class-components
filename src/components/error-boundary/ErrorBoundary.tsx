@@ -1,47 +1,33 @@
-import React, { Component, ErrorInfo } from 'react'
+import { Component, ErrorInfo, ReactNode } from 'react'
 
-interface IProps {
-  children: React.ReactNode
+interface Props {
+  children?: ReactNode
 }
 
-interface IState {
+interface State {
   hasError: boolean
 }
 
-class ErrorBoundary extends Component<IProps, IState> {
-  constructor(props: IProps) {
-    super(props)
-    this.state = { hasError: false }
-    this.handleClick = this.handleClick.bind(this)
+class ErrorBoundary extends Component<Props, State> {
+  public state: State = {
+    hasError: false,
   }
 
-  static getDerivedStateFromError(): IState {
+  public static getDerivedStateFromError(): State {
+    // Update state so the next render will show the fallback UI.
     return { hasError: true }
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('ErrorBoundary caught an error: ', error, errorInfo)
+  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    console.error('Uncaught error:', error, errorInfo)
   }
 
-  handleClick = (): void => {
-    this.setState({ hasError: false })
-  }
-
-  render() {
-    const { hasError } = this.state
-    const { children } = this.props
-    if (hasError) {
-      return (
-        <div className=''>
-          <p>
-            Something went wrong. If you want to go to the previews page, click the button &quot;Go
-            back&quot;
-          </p>
-          <button onClick={this.handleClick}>Go back</button>
-        </div>
-      )
+  public render() {
+    if (this.state.hasError) {
+      return <h1>Sorry.. there was an error</h1>
     }
-    return children
+
+    return this.props.children
   }
 }
 

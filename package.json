@@ -10,7 +10,7 @@
     "format:fix": "prettier --write 'src/**/*.{ts,tsx}'",
     "preview": "vite preview",
     "prepare": "husky",
-    "test": "vitest",
+    "test": "vitest run --coverage.enabled --coverage.80",
     "coverage": "vitest run --coverage",
     "prettier:check": "npx prettier . --check"
   },

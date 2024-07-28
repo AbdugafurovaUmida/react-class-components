@@ -13,15 +13,15 @@ const List: React.FC<Props> = (props: Props) => {
   const { data, isLoading } = props
 
   return (
-    <section className='results-container' style={{ position: 'relative' }}>
-      {data?.results.length && (
+    <section data-testid='list' className='results-container' style={{ position: 'relative' }}>
+      {data?.results?.length && (
         <div className='results-container'>
           <ul className='results'>
             {data?.results?.map((people) => <Card people={people} key={people?.name} />)}
           </ul>
         </div>
       )}
-      {!data?.results.length && !isLoading ? `Sorry, I didn't find anything` : ''}
+      {!data && !isLoading ? `Sorry, I didn't find anything` : ''}
     </section>
   )
 }

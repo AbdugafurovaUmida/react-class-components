@@ -1,56 +1,62 @@
 import '@testing-library/jest-dom'
-import React from 'react'
-import { render } from '@testing-library/react'
-import Card from '../components/card/Card'
-import People from '../types/people'
-import { describe, expect, it } from 'vitest'
+import { render, screen } from '@testing-library/react'
+import { Provider } from 'react-redux'
 import { MemoryRouter } from 'react-router-dom'
-import DescriptionField from '../components/description-field/DescriptionField'
+import { store } from '../store/store'
+import { expect, describe, it } from 'vitest'
+import React from 'react'
+import Card from '../components/card/Card'
 
-const mockData: People = {
-  name: 'Luka',
-  birth_year: '19BBY',
-  created: '2014-12-09T13:50:51.644000Z',
-  edited: '2014-12-20T21:17:56.891000Z',
-  eye_color: 'blue',
-  films: [
-    'https://swapi.dev/api/films/1/',
-    'https://swapi.dev/api/films/2/',
-    'https://swapi.dev/api/films/3/',
-  ],
-  gender: 'male',
-  hair_color: 'blond',
+import People from '../types/people'
+
+const fakeData: People = {
+  name: '',
   height: '172',
-  homeworld: 'https://swapi.dev/api/planets/1/',
   mass: '77',
+  hair_color: 'blond',
   skin_color: 'fair',
-  species: [],
-  url: 'https://swapi.dev/api/people/1/',
-  starships: ['https://swapi.dev/api/starships/12/', 'https://swapi.dev/api/starships/22/'],
+  eye_color: 'blue',
+  birth_year: '19BBY',
+  gender: '',
+  homeworld: 'https://swapi.dev/api/planets/1/',
+  films: [
+    'https://swapi.dev/api/films/2/',
+    'https://swapi.dev/api/films/6/',
+    'https://swapi.dev/api/films/3/',
+    'https://swapi.dev/api/films/1/',
+    'https://swapi.dev/api/films/7/',
+  ],
+  species: ['https://swapi.dev/api/species/1/'],
   vehicles: ['https://swapi.dev/api/vehicles/14/', 'https://swapi.dev/api/vehicles/30/'],
+  starships: ['https://swapi.dev/api/starships/12/', 'https://swapi.dev/api/starships/22/'],
+  url: 'https://swapi.dev/api/people/1/',
+  created: '',
+  edited: '',
 }
 
-describe('Card component', () => {
-  it('renders the correct Hero information', () => {
-    render(
+const renderCard = (data: People) => {
+  render(
+    <Provider store={store}>
       <MemoryRouter>
-        <Card people={mockData} />
-      </MemoryRouter>,
-    )
-    const label = 'Test Label'
-    const children = 'Test Children'
+        <Card people={data} />
+      </MemoryRouter>
+    </Provider>,
+  )
+}
 
-    const { getByText } = render(<DescriptionField label={label} children={children} />)
-
-    expect(getByText(`${label}:`)).to.exist
-    expect(getByText(children)).to.exist
+describe('Card', () => {
+  it('should render name', () => {
+    renderCard(fakeData)
+    expect(screen.getByTestId('search-item-name').textContent).toBe(fakeData.name)
   })
 
-  it('displays the correct data', () => {
-    render(
-      <MemoryRouter>
-        <Card people={mockData} />
-      </MemoryRouter>,
-    )
+  it('should render gender', () => {
+    renderCard(fakeData)
+    expect(screen.getByTestId('search-item-gender').textContent).toBe(fakeData.gender)
+  })
+
+  it('should render checkbox', () => {
+    renderCard(fakeData)
+    expect(screen.getByTestId('search-item-checkbox')).toBeInTheDocument()
   })
 })

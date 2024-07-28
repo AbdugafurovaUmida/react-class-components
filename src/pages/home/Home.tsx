@@ -27,7 +27,7 @@ const Home = () => {
   const { data } = useGetHeroesByPageQuery(Number(searchParams.get('page')) || 1)
 
   return (
-    <div className={theme === 'light' ? ' light-mode ' : ' dark-mode '}>
+    <div data-testid='home-page' className={theme === 'light' ? ' light-mode ' : ' dark-mode '}>
       <div className='container'>
         <div className='home'>
           <h1>War Heroes</h1>
