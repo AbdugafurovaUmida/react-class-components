@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useGetHeroByIDQuery } from '../../services/swapi'
 import People from '../../types/people'
-import DetailCardLoader from '../../components/loader/DetailCardLoader'
+import DetailCardLoader from '../loader/DetailCardLoader'
 import './Detail.css'
 
 export default function Detail() {

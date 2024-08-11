@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import './Card.css'
+// import './Card.css'
 import People from '../../types/people'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store/store'

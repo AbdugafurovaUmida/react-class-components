@@ -2,7 +2,7 @@ import Card from '../../components/card/Card'
 import React from 'react'
 import ResponseApi from '../../types/api'
 import People from '../../types/people'
-import './List.css'
+// import './List.css'
 
 type Props = {
   data: ResponseApi<People> | undefined

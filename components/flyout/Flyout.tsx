@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store/store'
 import DownloadData from '../../dowload/dowload-data'
-import './Flyout.css'
+// import './Flyout.css'
 
 export function Flyout() {
   const dispatch = useDispatch()
