@@ -1,0 +1,24 @@
+.activeFlyout {
+  height: inherit;
+  transition: all 1s ease-out;
+}
+
+.activeFlyout button {
+  border: 2px solid #273e49;
+  opacity: 1;
+  transition: all 1s ease-out;
+  visibility: visible;
+  height: inherit;
+}
+
+.isActiveFlyout {
+  height: 0;
+  transition: all 1s ease-out;
+}
+
+.isActiveFlyout button {
+  border: 2px solid transparent;
+  visibility: hidden;
+  transition: all 1s ease-out;
+  opacity: 0;
+}
