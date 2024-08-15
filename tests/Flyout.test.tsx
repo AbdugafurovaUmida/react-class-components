@@ -5,8 +5,8 @@ import React from 'react'
 import { describe, test } from 'vitest'
 import { Provider } from 'react-redux'
 import { MemoryRouter } from 'react-router-dom'
-import { store } from '../store/store'
-
+import { makeStore } from '../store/store'
+const store = makeStore()
 describe('Flyout', () => {
   test('renders the Flyout component', () => {
     render(

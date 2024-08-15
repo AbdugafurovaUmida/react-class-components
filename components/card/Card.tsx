@@ -1,26 +1,26 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
-// import './Card.css'
 import People from '../../types/people'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../store/store'
+import { RootState, AppDispatch } from '../../store/store'
+import { useRouter } from 'next/router'
 
 interface CardProps {
   people: People
 }
 const Card: React.FC<CardProps> = (props: CardProps) => {
   const { people } = props
-  const navigate = useNavigate()
+  const router = useRouter()
+  const { asPath } = useRouter()
+  const dispatch = useDispatch<AppDispatch>()
 
   const peopleList = useSelector((state: RootState) => state.peopleState.list)
-  const dispatch = useDispatch()
 
   const imgId = people?.url.split('/')[5]
   const image = 'https://starwars-visualguide.com/assets/img/characters/' + imgId + '.jpg'
 
   const handleClick = (data: { url: string }) => {
     const slugUrl = data?.url.split('/')[5]
-    navigate(`/detail/${slugUrl}`)
+    router.push(`/${slugUrl}${asPath}`)
   }
 
   function changeHandler(e: React.ChangeEvent<HTMLInputElement>) {

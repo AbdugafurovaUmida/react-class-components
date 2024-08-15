@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { ThemeContext } from './ThemeContext'
-import DarkMode from '../assets/dark-mode.png'
-import LightMode from '../assets/light-mode.png'
+import Image from 'next/image'
+import React from 'react'
 
 export function ThemeToggle() {
   const { theme, setTheme } = useContext(ThemeContext)
@@ -20,9 +20,11 @@ export function ThemeToggle() {
         }}
       />
       <label data-testid='theme-toggle-label' className='theme-toggle__label' htmlFor='themeSwitch'>
-        <img
+        <Image
+          width={100}
+          height={100}
           data-testid={theme === 'light' ? 'light-toggle-icon' : 'dark-toggle-icon'}
-          src={theme === 'light' ? DarkMode : LightMode}
+          src={theme === 'light' ? '/images/dark-mode.png' : '/images/light-mode.png'}
           alt='theme-icon'
         />
       </label>

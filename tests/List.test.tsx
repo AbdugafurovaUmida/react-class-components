@@ -2,9 +2,11 @@ import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { MemoryRouter } from 'react-router-dom'
 import { describe, it, expect } from 'vitest'
-import { store } from '../store/store'
+import { makeStore } from '../store/store'
 import People from '../types/people'
 import List from '../components/list/List'
+
+const store = makeStore()
 
 describe('List', () => {
   const mockData: People[] = [

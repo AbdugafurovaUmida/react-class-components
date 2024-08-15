@@ -2,12 +2,14 @@ import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { MemoryRouter } from 'react-router-dom'
-import { store } from '../store/store'
-import { expect, describe, it } from 'vitest'
+import { makeStore } from '../store/store'
+import { expect, describe, it, vi, beforeEach } from 'vitest'
 import React from 'react'
 import Card from '../components/card/Card'
 
 import People from '../types/people'
+import { useRouter } from 'next/router'
+const store = makeStore()
 
 const fakeData: People = {
   name: '',
@@ -34,6 +36,9 @@ const fakeData: People = {
   edited: '',
 }
 
+vi.mock('next/router', () => ({
+  useRouter: vi.fn(),
+}))
 const renderCard = (data: People) => {
   render(
     <Provider store={store}>
@@ -45,6 +50,12 @@ const renderCard = (data: People) => {
 }
 
 describe('Card', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+    ;(useRouter as jest.Mock).mockReturnValue({
+      asPath: '/mock-path',
+    })
+  })
   it('should render name', () => {
     renderCard(fakeData)
     expect(screen.getByTestId('search-item-name').textContent).toBe(fakeData.name)

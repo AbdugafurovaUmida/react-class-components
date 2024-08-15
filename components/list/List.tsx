@@ -2,15 +2,13 @@ import Card from '../../components/card/Card'
 import React from 'react'
 import ResponseApi from '../../types/api'
 import People from '../../types/people'
-// import './List.css'
 
 type Props = {
   data: ResponseApi<People> | undefined
-  isLoading: boolean
 }
 
 const List: React.FC<Props> = (props: Props) => {
-  const { data, isLoading } = props
+  const { data } = props
 
   return (
     <section data-testid='list' className='results-container' style={{ position: 'relative' }}>
@@ -21,7 +19,6 @@ const List: React.FC<Props> = (props: Props) => {
           </ul>
         </div>
       )}
-      {!data && !isLoading ? `Sorry, I didn't find anything` : ''}
     </section>
   )
 }

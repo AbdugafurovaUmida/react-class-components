@@ -1,3 +1,4 @@
+import router from 'next/router'
 import * as React from 'react'
 import { FormEvent } from 'react'
 import { SEARCH } from '../../consts/index'
@@ -13,6 +14,11 @@ export default function Search(props: Props) {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const value = (e.currentTarget[SEARCH].value as string).trim()
+    if (value) {
+      router.push(`/?search=${value.trim()}`)
+    } else {
+      router.push('/?search=&page=1')
+    }
     onChange(value)
   }
 

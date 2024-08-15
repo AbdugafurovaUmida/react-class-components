@@ -1,37 +1,33 @@
 import React from 'react'
-import { MouseEvent } from 'react'
-import { useSearchParams } from 'react-router-dom'
-import ResponseApi from '../../types/api'
-import People from '../../types/people'
+import { useRouter } from 'next/router'
+import { useContext } from 'react'
+import { ThemeContext } from '../../contexts/ThemeContext'
 
-type Props = {
-  data: ResponseApi<People> | undefined
+export type PaginationProps = {
+  pages: number[]
 }
 
-export default function Pagination(props: Props) {
-  const [urlSearchParams, setUrlSearchParams] = useSearchParams()
-  const page = parseInt(urlSearchParams.get('page') || '1', 10)
-  const { data } = props
-  const { next, previous } = data || {}
+export default function Pagination({ pages }: PaginationProps) {
+  console.log(pages)
+  const router = useRouter()
+  const currentPage = Number(router.query.page)
+  const { theme } = useContext(ThemeContext)
 
-  const handleChangePage = (e: MouseEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLElement
-    if (target.dataset.direction === 'prev' && previous) {
-      setUrlSearchParams(`page=${page - 1}`)
-    }
-    if (target.dataset.direction === 'next' && next) {
-      setUrlSearchParams(`page=${page + 1}`)
-    }
-  }
   return (
-    <div className='pagination-bar' onClick={handleChangePage}>
-      <button disabled={!previous} data-direction='prev'>
-        Prev
-      </button>
-      <span className='current-page'> {Number(urlSearchParams.get('page') || '1')}</span>
-      <button disabled={!next} data-direction='next'>
-        Next
-      </button>
-    </div>
+    <ul className='pagination-bar'>
+      {pages?.map((page) => (
+        <li
+          key={page}
+          className={currentPage === page ? 'pagination-bar__item-active' : 'pagination-bar__item'}
+          onClick={() => {
+            router.push(`/?search=&page=${page}`)
+          }}
+        >
+          <span className={`current-page ${theme === 'light' ? 'light-mode' : 'dark-mode'}`}>
+            {page}
+          </span>
+        </li>
+      ))}
+    </ul>
   )
 }

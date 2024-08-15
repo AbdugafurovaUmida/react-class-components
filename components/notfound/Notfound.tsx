@@ -1,12 +1,11 @@
-import { Link } from 'react-router-dom'
-import image from '../../assets/notfound.jpg'
+import Link from 'next/link'
 
 function NotFound() {
   return (
-    <div data-testid='notfound-page'>
+    <div className='notfound-page' data-testid='notfound-page'>
       <h2>Page is not found</h2>
-      <img src={image} alt='thanos hand' />
-      <Link to='/'>Back to home page</Link>
+      <img src='/images/notfound.jpg' alt='thanos hand' />
+      <Link href='/'>Back to home page</Link>
     </div>
   )
 }

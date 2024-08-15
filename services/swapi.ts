@@ -7,17 +7,17 @@ export const swaApi = createApi({
   tagTypes: ['swaApi'],
   baseQuery: fetchBaseQuery({ baseUrl: 'https://swapi.dev/api/' }),
   endpoints: (builder) => ({
-    getHeroesByPage: builder.query<ResponseApi<People>, number>({
-      query: (page) => `people?page=${page}`,
+    getHeroesByPage: builder.query<ResponseApi<People>, { search?: string; page?: string }>({
+      query: ({ search, page }) => {
+        return page ? `people?search=${search}&page=${page}` : `people?search=${search}`
+      },
     }),
-
     getHeroByID: builder.query<People, number>({
-      query: (id) => `people/${id}`,
-    }),
-    search: builder.mutation<ResponseApi<People>, string>({
-      query: (search) => `people?search=${search}`,
+      query: (id) => `people/${id}/`,
     }),
   }),
 })
 
-export const { useGetHeroesByPageQuery, useGetHeroByIDQuery, useSearchMutation } = swaApi
+export const { useGetHeroesByPageQuery, useGetHeroByIDQuery } = swaApi
+
+export const { getHeroesByPage } = swaApi.endpoints

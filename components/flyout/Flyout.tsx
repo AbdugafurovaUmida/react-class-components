@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store/store'
 import DownloadData from '../../dowload/dowload-data'
-// import './Flyout.css'
 
 export function Flyout() {
   const dispatch = useDispatch()
@@ -18,7 +17,7 @@ export function Flyout() {
   }
 
   return (
-    <div className={isActive ? ' activeFlyout ' : ' isActiveFlyout '}>
+    <div className={` flyout-component ${isActive ? ' activeFlyout ' : ' isActiveFlyout '}`}>
       <button onClick={clearHandler}>Unselect all</button>
       <button
         className='select-items-btn'
