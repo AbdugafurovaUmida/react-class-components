@@ -56,7 +56,7 @@ function Detail() {
 }
 
 export default Detail
-
+//eslint-disable-next-line
 export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
   const search = context.query.search || ''
   const page = context.query.page || '1'

@@ -19,24 +19,24 @@ interface MainLayoutProps {
 }
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
-  const [defaultValue, setDefaultValue] = useState<string | ''>('')
+  const [defaultValue, setDefaultValue] = useState<string | ''>()
   const router = useRouter()
   const search = router.query.search || ''
   const page = router.query.page || '1'
   const { theme } = useContext(ThemeContext)
-  const storedValue = localStorage.getItem(SEARCH) || ''
 
   const responseData = useGetHeroesByPageQuery({ search: search as string, page: page as string })
-
-  if (!responseData) {
-    return
-  }
 
   const charactersData = responseData?.data
 
   useEffect(() => {
+    const storedValue = localStorage.getItem(SEARCH) || ''
     setDefaultValue(storedValue)
   }, [defaultValue])
+
+  if (!responseData) {
+    return
+  }
 
   const handleChange = async (value: string) => {
     localStorage.setItem('search', value)
