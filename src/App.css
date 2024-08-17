@@ -44,3 +44,7 @@
 main {
   min-height: 70vh;
 }
+
+.btn {
+  margin-top: 20px;
+}

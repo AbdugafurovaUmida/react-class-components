@@ -8,6 +8,9 @@ ul {
 
 li {
   list-style: none;
+}
+
+li a {
   padding: 16px;
   background-color: #ebeaea;
   border-radius: 20px;

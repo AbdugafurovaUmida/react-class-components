@@ -1,8 +1,8 @@
-import React from 'react';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
-const Header: React.FC = () => {
+const Header: FC = (): JSX.Element => {
   return (
     <header>
       <nav>
