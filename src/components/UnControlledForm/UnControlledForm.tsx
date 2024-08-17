@@ -3,7 +3,7 @@ import './UnControlledForm.css';
 const UnControlledForm = () => {
   return (
     <div className="uncontrolled-wrapper">
-      <h1>UnControlled Form</h1>
+      <h1>UnControlled Form)</h1>
       <form action="">
         <div>
           <div className="input-field">
