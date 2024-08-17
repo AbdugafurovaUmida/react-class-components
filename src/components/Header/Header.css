@@ -1,0 +1,14 @@
+ul {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 0;
+  margin-bottom: 30px;
+  gap: 15px;
+}
+
+li {
+  list-style: none;
+  padding: 16px;
+  background-color: #ebeaea;
+  border-radius: 20px;
+}

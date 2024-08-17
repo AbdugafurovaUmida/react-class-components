@@ -1,0 +1,22 @@
+.controlled-wrapper {
+  border: 3px solid;
+  padding: 0 50px 50px 50px;
+  border-radius: 8px;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.usual-field {
+  width: 100%;
+  padding: 10px;
+}
+
+.btn {
+  margin-top: 20px;
+}

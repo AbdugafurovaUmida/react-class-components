@@ -5,20 +5,33 @@ import NotFound from '../pages/NotFound/NotFound';
 import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ErrorElement } from './shared/utils/errorBoundary/ErrorElement';
+import Layout from './components/Layout/Layout';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Main />,
+    element: (
+      <Layout>
+        <Main />
+      </Layout>
+    ),
     errorElement: <ErrorElement />,
   },
   {
     path: 'controlled',
-    element: <Controlled />,
+    element: (
+      <Layout>
+        <Controlled />
+      </Layout>
+    ),
   },
   {
     path: 'uncontrolled',
-    element: <UnControlled />,
+    element: (
+      <Layout>
+        <UnControlled />
+      </Layout>
+    ),
   },
   {
     path: '*',

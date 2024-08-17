@@ -1,7 +1,11 @@
-import React from 'react';
+import UnControlledForm from '../../src/components/UnControlledForm/UnControlledForm';
 
 const UnControlled = () => {
-  return <div>UnControlled</div>;
+  return (
+    <>
+      <UnControlledForm />
+    </>
+  );
 };
 
 export default UnControlled;

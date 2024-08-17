@@ -1,7 +1,11 @@
-import React from 'react';
+import ControlledForm from '../../src/components/ControlledForm/ControlledForm';
 
 const Controlled = () => {
-  return <div>Controlled</div>;
+  return (
+    <>
+      <ControlledForm />
+    </>
+  );
 };
 
 export default Controlled;
