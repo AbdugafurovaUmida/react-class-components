@@ -1,5 +1,3 @@
-import { REG_EXP } from '../../types/validation';
-
 export const imageToBase64 = async (img: File | Blob): Promise<string> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -17,16 +15,4 @@ export const imageToBase64 = async (img: File | Blob): Promise<string> => {
     };
     reader.readAsDataURL(img);
   });
-};
-
-export const getPasswordStrength = (password: string | undefined): number => {
-  if (!password) return 0;
-  let strength = 0;
-
-  if (new RegExp(REG_EXP.special_character).test(password)) strength++;
-  if (new RegExp(REG_EXP.uppercase).test(password)) strength++;
-  if (new RegExp(REG_EXP.lowercase).test(password)) strength++;
-  if (new RegExp(REG_EXP.numbers).test(password)) strength++;
-
-  return strength;
 };

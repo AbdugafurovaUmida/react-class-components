@@ -21,7 +21,13 @@ export const ControlledForm: FC = () => {
     handleSubmit,
     formState: { errors, isValid },
     reset,
-  } = useForm<FormInputs>({ resolver: yupResolver(schema), mode: 'all' });
+  } = useForm<FormInputs>({
+    resolver: yupResolver(schema),
+    mode: 'all',
+    defaultValues: {
+      gender: 'male', // Initial value for gender
+    },
+  });
 
   const onSubmitHandler = async (data: FormInputs) => {
     const imageBase64 = await imageToBase64(data.file[0]);

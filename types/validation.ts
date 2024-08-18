@@ -10,5 +10,3 @@ export const enum REG_EXP {
   numbers = '[0-9]',
   start_lowercase = '^[A-Z]',
 }
-
-export const PASSWORD_STRENGTH_COLORS = ['#ee5a43', '#de8508', '#eee92f', '#32b225'];
