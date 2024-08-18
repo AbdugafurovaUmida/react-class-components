@@ -32,7 +32,7 @@ export const schema = yup.object().shape({
     .string()
     .oneOf([yup.ref('password')], 'Passwords must match')
     .required('Password is a required field'),
-  gender: yup.string().oneOf(['male', 'female']).required('Gender is required'),
+  gender: yup.string().oneOf(['male', 'female', '']).required('Gender is required'),
   terms: yup.boolean().oneOf([true], 'You must accept the terms and conditions').required(),
   file: yup
     .mixed<FileList>()
