@@ -20,7 +20,8 @@ export const UnControlledForm: FC = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const confirmRef = useRef<HTMLInputElement>(null);
-  const genderRef = useRef<HTMLInputElement>(null);
+  const maleRef = useRef<HTMLInputElement>(null);
+  const femaleRef = useRef<HTMLInputElement>(null);
   const termsRef = useRef<HTMLInputElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const countryRef = useRef<HTMLInputElement>(null);
@@ -38,7 +39,7 @@ export const UnControlledForm: FC = () => {
       email: emailRef.current?.value || '',
       password: passwordRef.current?.value || '',
       confirm: confirmRef.current?.value || '',
-      gender: genderRef.current?.value === 'male' ? 'male' : 'female',
+      gender: maleRef.current?.checked ? 'male' : femaleRef.current?.checked ? 'female' : '',
       terms: termsRef.current?.checked || false,
       file: fileRef.current?.files || ({} as FileList),
       country: countryRef.current?.value || '',
@@ -105,9 +106,9 @@ export const UnControlledForm: FC = () => {
         <label>Gender</label>
         <div style={{ display: 'flex' }}>
           <label htmlFor="gender">Male</label>
-          <input ref={genderRef} name="gender" id="male" type="radio" value="male" />
+          <input ref={maleRef} name="gender" id="male" type="radio" value="male" />
           <label htmlFor="femail">Female</label>
-          <input ref={genderRef} name="gender" id="femail" type="radio" value="female" />
+          <input ref={femaleRef} name="gender" id="femail" type="radio" value="female" />
         </div>
         <p className="errors">{errors.gender}</p>
       </div>

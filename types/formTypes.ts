@@ -4,7 +4,7 @@ export interface FormInputs {
   email: string;
   password: string;
   confirm: string;
-  gender: 'male' | 'female';
+  gender: 'male' | 'female' | '';
   terms: boolean;
   file: FileList;
   country: string;
@@ -16,7 +16,7 @@ export interface ConvertedFormInputs {
   email: string;
   password: string;
   confirm: string;
-  gender: 'male' | 'female';
+  gender: 'male' | 'female' | '';
   terms: boolean;
   file: string;
   country: string;
