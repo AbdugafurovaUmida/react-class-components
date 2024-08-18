@@ -48,3 +48,14 @@ main {
 .btn {
   margin-top: 20px;
 }
+
+.errors {
+  line-height: 120%;
+  color: red;
+  min-height: 19px;
+}
+
+.btn:disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}

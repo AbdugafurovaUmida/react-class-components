@@ -8,9 +8,6 @@ const Header: FC = (): JSX.Element => {
       <nav>
         <ul>
           <li>
-            <Link to="/">Main</Link>
-          </li>
-          <li>
             <Link to="/controlled">Controlled Form</Link>
           </li>
           <li>

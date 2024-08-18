@@ -1,38 +1,37 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ConvertedFormInputs } from '../../types/formTypes';
 
-interface FormData {
-  name: string;
-  age: number;
-  email: string;
-  password: string;
-  gender: string;
-  termsAccepted: boolean;
-  picture: string;
-  country: string;
+export const enum Identificator {
+  controlled = 'controlled',
+  uncontrolled = 'uncontrolled',
 }
 
-interface FormState {
-  controlledFormData: FormData | null;
-  uncontrolledFormData: FormData | null;
+export interface formsSchema {
+  controllForm: ConvertedFormInputs[];
+  unControlledForm: ConvertedFormInputs[];
+  lastFormId: Identificator.controlled | Identificator.uncontrolled | null;
 }
 
-const initialState: FormState = {
-  controlledFormData: null,
-  uncontrolledFormData: null,
+const initialState: formsSchema = {
+  controllForm: [],
+  unControlledForm: [],
+  lastFormId: null,
 };
 
-const formSlice = createSlice({
+export const formsSlice = createSlice({
   name: 'forms',
   initialState,
   reducers: {
-    submitControlledForm: (state, action) => {
-      state.controlledFormData = action.payload;
+    addFControllForm(state: formsSchema, action: PayloadAction<ConvertedFormInputs>) {
+      state.controllForm = [...state.controllForm, action.payload];
+      state.lastFormId = Identificator.controlled;
     },
-    submitUncontrolledForm: (state, action) => {
-      state.uncontrolledFormData = action.payload;
+    addFUnControllForm(state: formsSchema, action: PayloadAction<ConvertedFormInputs>) {
+      state.unControlledForm = [...state.unControlledForm, action.payload];
+      state.lastFormId = Identificator.uncontrolled;
     },
   },
 });
 
-export const { submitControlledForm, submitUncontrolledForm } = formSlice.actions;
-export default formSlice.reducer;
+export const { reducer: formsReducer } = formsSlice;
+export const { addFControllForm, addFUnControllForm } = formsSlice.actions;
