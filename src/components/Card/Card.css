@@ -1,0 +1,12 @@
+.item__image {
+  width: 100px;
+  height: 100px;
+  object-fit: content;
+  object-position: center;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
